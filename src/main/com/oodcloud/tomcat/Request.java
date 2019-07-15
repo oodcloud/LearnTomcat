@@ -7,7 +7,7 @@ import java.io.InputStream;
  * @author wangyujie
  * 2019/7/14
  */
-public class Request {
+public class Request implements ServletRequest{
     private String uri;
     private InputStream inputStream;
 

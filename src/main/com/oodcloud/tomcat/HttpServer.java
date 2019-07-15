@@ -45,6 +45,13 @@ public class HttpServer {
                 request.parse();
                 Response response = new Response(outputStream);
                 response.setRequest(request);
+                if (request.getUri().startsWith("/servlet/")) {
+                    ServletProcessor servletProcessor = new ServletProcessor();
+                    servletProcessor.process(request,response);
+                } else {
+                    StaticProcessor staticProcessor = new StaticProcessor();
+                    staticProcessor.process(request,response);
+                }
                 response.sendStaticResource();
                 socket.close();
                 shutdown = request.getUri().equals(SHUTDOWN_CMD);
