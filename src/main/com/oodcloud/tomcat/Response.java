@@ -1,9 +1,7 @@
 package oodcloud.tomcat;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.util.Locale;
 
 /**
  * @author wangyujie
@@ -13,6 +11,7 @@ public class Response implements  ServletResponse{
     private static final int BUFFER_SIZE = 1024;
     private Request request;
     private OutputStream outputStream;
+    private PrintWriter printWriter;
 
     public Response(OutputStream outputStream) {
         this.outputStream = outputStream;
@@ -53,5 +52,76 @@ public class Response implements  ServletResponse{
             if (fis!=null)
                 fis.close();
         }
+    }
+
+    @Override
+    public void flushBuffer() throws IOException {
+
+    }
+
+    @Override
+    public int getBufferSize() {
+        return 0;
+    }
+
+    @Override
+    public String getCharacterEncoding() {
+        return null;
+    }
+
+    @Override
+    public String getContentType() {
+        return null;
+    }
+
+    @Override
+    public Locale getLocale() {
+        return null;
+    }
+
+    @Override
+    public PrintWriter getWriter() throws IOException {
+        printWriter = new PrintWriter(outputStream,true);
+        return printWriter;
+    }
+
+    @Override
+    public boolean isCommitted() {
+        return false;
+    }
+
+    @Override
+    public void reset() {
+
+    }
+
+    @Override
+    public void resetBuffer() {
+
+    }
+
+    @Override
+    public void setBufferSize(int var1) {
+
+    }
+
+    @Override
+    public void setCharacterEncoding(String var1) {
+
+    }
+
+    @Override
+    public void setContentLength(int var1) {
+
+    }
+
+    @Override
+    public void setContentType(String var1) {
+
+    }
+
+    @Override
+    public void setLocale(Locale var1) {
+
     }
 }

@@ -49,8 +49,8 @@ public class HttpServer {
                     ServletProcessor servletProcessor = new ServletProcessor();
                     servletProcessor.process(request,response);
                 } else {
-                    StaticProcessor staticProcessor = new StaticProcessor();
-                    staticProcessor.process(request,response);
+                    StaticResourceProcessor staticResourceProcessor = new StaticResourceProcessor();
+                    staticResourceProcessor.process(request,response);
                 }
                 response.sendStaticResource();
                 socket.close();
