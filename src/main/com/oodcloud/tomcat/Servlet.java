@@ -1,5 +1,7 @@
 package oodcloud.tomcat;
 
+import oodcloud.tomcat.connector.ServletRequest;
+import oodcloud.tomcat.connector.ServletResponse;
 import oodcloud.tomcat.exception.ServletException;
 
 import java.io.IOException;
@@ -15,7 +17,7 @@ public interface Servlet {
 
     ServletConfig getServletConfig();
 
-    void service(ServletRequest var1, ServletResponse var2) throws ServletException, IOException;
+    void service(ServletRequest request, ServletResponse response) throws ServletException, IOException;
 
     String getServletInfo();
 

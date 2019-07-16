@@ -1,5 +1,10 @@
 package oodcloud.tomcat;
 
+import oodcloud.tomcat.connector.HttpRequest;
+import oodcloud.tomcat.connector.HttpResponse;
+import oodcloud.tomcat.core.ServletProcessor;
+import oodcloud.tomcat.core.StaticResourceProcessor;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +29,7 @@ public class HttpServer {
     }
 
     public void await() {
-        ServerSocket serverSocket = null;
+        /*ServerSocket serverSocket = null;
         int port = 8080;
         try {
             serverSocket = new ServerSocket(port, 1, InetAddress.getByName("127.0.0.1"));
@@ -41,25 +46,27 @@ public class HttpServer {
                 socket = serverSocket.accept();
                 inputStream = socket.getInputStream();
                 outputStream = socket.getOutputStream();
-                Request request = new Request(inputStream);
-                request.parse();
-                Response response = new Response(outputStream);
-                response.setRequest(request);
-                if (request.getUri().startsWith("/servlet/")) {
+                HttpRequest httpRequest = new HttpRequest(inputStream);
+                httpRequest.parse();
+                if ("".equals(httpRequest.getUri()) || httpRequest.getUri() == null) {
+                    continue;
+                }
+                HttpResponse httpResponse = new HttpResponse(outputStream);
+                httpResponse.setHttpRequest(httpRequest);
+                if (httpRequest.getUri().startsWith("/servlet/")) {
                     ServletProcessor servletProcessor = new ServletProcessor();
-                    servletProcessor.process(request,response);
+                    servletProcessor.process(httpRequest, httpResponse);
                 } else {
                     StaticResourceProcessor staticResourceProcessor = new StaticResourceProcessor();
-                    staticResourceProcessor.process(request,response);
+                    staticResourceProcessor.process(httpRequest, httpResponse);
                 }
-                response.sendStaticResource();
                 socket.close();
-                shutdown = request.getUri().equals(SHUTDOWN_CMD);
+                shutdown = httpRequest.getUri().equals(SHUTDOWN_CMD);
             } catch (IOException e) {
                 e.printStackTrace();
                 continue;
             }
-        }
+        }*/
 
     }
 }
