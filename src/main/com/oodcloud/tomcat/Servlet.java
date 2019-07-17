@@ -1,9 +1,10 @@
 package oodcloud.tomcat;
 
-import oodcloud.tomcat.connector.ServletRequest;
-import oodcloud.tomcat.connector.ServletResponse;
+
 import oodcloud.tomcat.exception.ServletException;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**

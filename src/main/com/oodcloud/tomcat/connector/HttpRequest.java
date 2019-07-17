@@ -16,9 +16,11 @@ import java.util.*;
 public class HttpRequest implements HttpServletRequest {
     private String uri;
     private InputStream inputStream;
+    private String queryString;
 
     protected HashMap<String,String> headers = new HashMap<>();
     protected List<Cookie> cookies = new ArrayList<>();
+    private String requestedSessionId;
 //    protected ParameterMap parameters = null;
 
     public HttpRequest(InputStream inputStream) {
@@ -303,7 +305,11 @@ public class HttpRequest implements HttpServletRequest {
 
     @Override
     public String getQueryString() {
-        return null;
+        return queryString;
+    }
+
+    public void setQueryString(String queryString) {
+        this.queryString = queryString;
     }
 
     @Override
@@ -323,7 +329,11 @@ public class HttpRequest implements HttpServletRequest {
 
     @Override
     public String getRequestedSessionId() {
-        return null;
+        return requestedSessionId;
+    }
+
+    public void setRequestedSessionId(String requestedSessionId) {
+        this.requestedSessionId = requestedSessionId;
     }
 
     @Override
@@ -404,5 +414,21 @@ public class HttpRequest implements HttpServletRequest {
     @Override
     public <T extends HttpUpgradeHandler> T upgrade(Class<T> aClass) throws IOException, ServletException {
         return null;
+    }
+
+    public void setRequestedSessionURL(boolean b) {
+
+    }
+
+    public void setMethod(String method) {
+
+    }
+
+    public void setProtocol(String protocol) {
+
+    }
+
+    public void setRequestURI(String normalizedUri) {
+
     }
 }

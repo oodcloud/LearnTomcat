@@ -1,6 +1,7 @@
 package oodcloud.tomcat.util;
 
 import java.util.Hashtable;
+import java.util.ResourceBundle;
 
 /**
  * @author wangyujie
@@ -11,6 +12,7 @@ import java.util.Hashtable;
 public class StringManager {
     private static Hashtable<String,StringManager> manager = new Hashtable();
     private String packageName;
+    private ResourceBundle resourceBundle;
     private StringManager(String packageName) {
         this.packageName = packageName;
     }
@@ -25,5 +27,9 @@ public class StringManager {
             manager.put(packageName,stringManager);
         }
         return stringManager;
+    }
+
+    public String getString(String s) {
+        return null;
     }
 }
